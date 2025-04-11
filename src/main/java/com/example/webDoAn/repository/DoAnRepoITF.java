@@ -6,6 +6,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.web.bind.annotation.RequestParam;
 
 public interface DoAnRepoITF extends JpaRepository<DoAn,Long> {
 
@@ -30,4 +31,6 @@ public interface DoAnRepoITF extends JpaRepository<DoAn,Long> {
     @Query("SELECT da FROM DoAn da WHERE da.loaiDoAn.id = 30 ORDER BY da.ngayTao DESC")
     Page<DoAn> pageNuocUong(Pageable pageable);
 
+    @Query("SELECT da FROM DoAn da WHERE da.ten like %:tenMonAn% ORDER BY da.ngayTao DESC")
+    Page<DoAn> pageTrangChu(@RequestParam("tenMonAn") String tenMonAn, Pageable pageable);
 }

@@ -5,12 +5,14 @@ import com.example.webDoAn.repository.DoAnRepoITF;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -117,4 +119,17 @@ public class DoAnService {
         return doAnRepoITF.pageNuocUong(pageable);
     }
 
+    public Page<DoAn> getAllTrangChu(String tenMonAn, int page, int size) {
+        Pageable pageable = PageRequest.of(page,size);
+        if (tenMonAn == null || tenMonAn.trim().isEmpty()){
+            return doAnRepoITF.findAll(pageable);
+        }
+
+        return doAnRepoITF.pageTrangChu(tenMonAn,pageable);
+    }
+
+
+    public Optional<DoAn> getByIdMonAn(Long id) {
+        return doAnRepoITF.findById(id);
+    }
 }

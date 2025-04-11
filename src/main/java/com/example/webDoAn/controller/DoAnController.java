@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/do-an")
@@ -111,6 +112,12 @@ public class DoAnController {
         return ResponseEntity.ok(doAnPage);
     }
 
+    @GetMapping("/hien-thi-trang-chu")
+    public ResponseEntity<Page<DoAn>> getAllTrangChu(@RequestParam(defaultValue = "0")int page,@RequestParam(defaultValue = "12")int size,@RequestParam(required = false)String tenMonAn){
+        Page<DoAn> pageTrangChu = doAnService.getAllTrangChu(tenMonAn,page,size);
+        return ResponseEntity.ok(pageTrangChu);
+    }
+
     @GetMapping("/hien-thi-do-an-man")
     public  ResponseEntity<Page<DoAn>> getAllDoAnMan(@RequestParam(defaultValue = "0") int page,@RequestParam(defaultValue = "12" )int size){
         Page<DoAn> pageDoAnMan = doAnService.pageDoAnMan(page,size);
@@ -141,6 +148,15 @@ public class DoAnController {
         return ResponseEntity.ok(pageNuocUong);
     }
 
+    @GetMapping("/chi-tiet/{id}")
+    public ResponseEntity<?> getByIdMonAn(@PathVariable Long id){
+        Optional<DoAn> doAn = doAnService.getByIdMonAn(id);
+        if (doAn.isPresent()){
+            return ResponseEntity.ok(doAn.get());
+        }else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+    }
 
 
 }
