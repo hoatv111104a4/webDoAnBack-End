@@ -15,20 +15,20 @@ public interface DoAnRepoITF extends JpaRepository<DoAn,Long> {
 
     Page<DoAn> findByTenContainingIgnoreCase(String ten, Pageable pageable);
 
-    @Query("SELECT da FROM DoAn da WHERE da.loaiDoAn.id = 26 ORDER BY da.ngayTao DESC")
+    @Query("SELECT da FROM DoAn da WHERE da.loaiDoAn.id = 1 ORDER BY da.ngayTao DESC")
     Page<DoAn> pageDoAnMan(Pageable pageable);
 
-    @Query("SELECT da FROM DoAn da WHERE da.loaiDoAn.id = 27 ORDER BY da.ngayTao DESC")
+    @Query("SELECT da FROM DoAn da WHERE da.loaiDoAn.id = 2 ORDER BY da.ngayTao DESC")
     Page<DoAn> pageDoChay(Pageable pageable);
 
-    @Query("SELECT da FROM DoAn da WHERE da.loaiDoAn.id = 28 ORDER BY da.ngayTao DESC")
+    @Query("SELECT da FROM DoAn da WHERE da.loaiDoAn.id = 3 ORDER BY da.ngayTao DESC")
     Page<DoAn> pageDoTrangMieng(Pageable pageable);
 
-    @Query("SELECT da FROM DoAn da WHERE da.loaiDoAn.id = 29 ORDER BY da.ngayTao DESC")
+    @Query("SELECT da FROM DoAn da WHERE da.loaiDoAn.id = 4 ORDER BY da.ngayTao DESC")
     Page<DoAn> pageDoAnVat(Pageable pageable);
 
 
-    @Query("SELECT da FROM DoAn da WHERE da.loaiDoAn.id = 30 ORDER BY da.ngayTao DESC")
+    @Query("SELECT da FROM DoAn da WHERE da.loaiDoAn.id = 5 ORDER BY da.ngayTao DESC")
     Page<DoAn> pageNuocUong(Pageable pageable);
 
     @Query("SELECT da FROM DoAn da WHERE da.ten like %:tenMonAn% ORDER BY da.ngayTao DESC")
